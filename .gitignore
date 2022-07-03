@@ -14,3 +14,5 @@ public/static
 .idea
 cache
 cypress/screenshots/
+# Local Netlify folder
+.netlify

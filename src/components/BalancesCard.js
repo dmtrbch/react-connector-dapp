@@ -4,18 +4,18 @@ import Card from './Card';
 import { colors } from '../theme';
 import { useWeb3React } from '@web3-react/core';
 import useEth from '../hooks/useEth';
-import { useCToken } from '../hooks/useCToken';
-import { useAppContext } from '../AppContext';
+import { useCasino } from '../hooks/useCasino';
 
 const BalanceCard = () => {
   const { account } = useWeb3React();
   const { fetchEthBalance, ethBalance } = useEth();
-  const { fetchCTokenBalance, cTokenBalance } = useCToken();
+  const { fetchCasinoBalance, getCurrentBetAmount, casinoBalance, currentBetAmount } = useCasino();
 
-  useEffect(() => {
+  useEffect(async () => {
     if (account) {
-      fetchEthBalance();
-      fetchCTokenBalance();
+      await fetchEthBalance();
+      await fetchCasinoBalance();
+      await getCurrentBetAmount();
     }
   }, [account]);
 
@@ -25,7 +25,10 @@ const BalanceCard = () => {
         ETH balance: {ethBalance}
       </Text>
       <Text block color={colors.green}>
-        cETH balance: {cTokenBalance}
+        Casino balance: {casinoBalance}
+      </Text>
+      <Text block color={colors.green}>
+        Current Bet amount: {currentBetAmount}
       </Text>
     </Card>
   );

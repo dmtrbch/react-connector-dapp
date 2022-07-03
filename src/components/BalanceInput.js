@@ -60,7 +60,7 @@ const IconMapping = {
   ),
 };
 
-const BalanceInput = ({ balance, value, setValue, currency = 'default', title = 'From' }) => {
+const BalanceInput = ({ balance, value, setValue, currency = 'default', title = 'Enter bet amount' }) => {
   return (
     <InputContainer>
       <div className="d-flex justify-content-between mb-3">

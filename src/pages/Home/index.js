@@ -1,15 +1,16 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import CompInteractionCard from './CompInteractionCard';
+import CasinoInteractionCard from './CasinoInteractionCard';
 import ConnectWalletModal from '../../components/ConnectWalletModal';
 import useWalletConnectionModal from '../../hooks/useWalletConnectionModal';
-
+import LastThreeWinnersCard from '../../components/LastThreeWinnersCard';
 const Home = () => {
   const { isWalletConnectModalOpen } = useWalletConnectionModal();
   return (
-    <Container className="mt-5">
+    <Container className="mt-2">
       {isWalletConnectModalOpen && <ConnectWalletModal />}
-      <CompInteractionCard />
+      <CasinoInteractionCard />
+      <LastThreeWinnersCard />
     </Container>
   );
 };

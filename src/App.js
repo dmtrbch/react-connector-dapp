@@ -26,3 +26,15 @@ const App = () => {
 };
 
 export default App;
+
+// on line 18 this is where we set up our provider
+
+// this is the provider that gives us access to the hooks throughtout the rest of the app
+
+// essentully we need to pass this getLibrary function
+
+// we can see on line 12 what it does it passes in the ethers provider
+
+// this is where the library is injected
+
+// and if we go back to the useContract

@@ -3,10 +3,15 @@ import React, { createContext, useReducer } from 'react';
 const initialContext = {
   ethBalance: '--',
   setEthBalance: () => {},
-  cTokenBalance: '--',
-  setCTokenBalance: () => {},
-  exchangeRate: 0,
-  setExchangeRate: () => {},
+  casinoBalance: '--',
+  setCasinoBalance: () => {},
+  currentBetAmount: '--',
+  setCurrentBetAmount: () => {},
+  casinoNumber: '--',
+  setCasinoNumber: () => {},
+  betStatus: '--',
+  setBetStatus: () => {},
+
   isWalletConnectionModalOpen: false,
   setWalletConnectModal: () => {},
   txnStatus: 'NOT_SUBMITTED',
@@ -21,16 +26,28 @@ const appReducer = (state, { type, payload }) => {
         ethBalance: payload,
       };
 
-    case 'SET_C_TOKEN_BALANCE':
+    case 'SET_CASINO_BALANCE':
       return {
         ...state,
-        cTokenBalance: payload,
+        casinoBalance: payload,
       };
 
-    case 'SET_EXCHANGE_RATE':
+    case 'SET_CURRENT_BET_AMOUNT':
       return {
         ...state,
-        exchangeRate: payload,
+        currentBetAmount: payload,
+      };
+
+    case 'SET_CASINO_NUMBER':
+      return {
+        ...state,
+        casinoNumber: payload,
+      };
+
+    case 'SET_BET_STATUS':
+      return {
+        ...state,
+        betStatus: payload,
       };
 
     case 'SET_WALLET_MODAL':
@@ -59,13 +76,21 @@ export const AppContextProvider = ({ children }) => {
     setEthBalance: (balance) => {
       dispatch({ type: 'SET_ETH_BALANCE', payload: balance });
     },
-    cTokenBalance: store.cTokenBalance,
-    setCTokenBalance: (balance) => {
-      dispatch({ type: 'SET_C_TOKEN_BALANCE', payload: balance });
+    casinoBalance: store.casinoBalance,
+    setCasinoBalance: (balance) => {
+      dispatch({ type: 'SET_CASINO_BALANCE', payload: balance });
     },
-    exchangeRate: store.exchangeRate,
-    setExchangeRate: (rate) => {
-      dispatch({ type: 'SET_EXCHANGE_RATE', payload: rate });
+    currentBetAmount: store.currentBetAmount,
+    setCurrentBetAmount: (balance) => {
+      dispatch({ type: 'SET_CURRENT_BET_AMOUNT', payload: balance });
+    },
+    casinoNumber: store.casinoNumber,
+    setCasinoNumber: (number) => {
+      dispatch({ type: 'SET_CASINO_NUMBER', payload: number });
+    },
+    betStatus: store.betStatus,
+    setBetStatus: (status) => {
+      dispatch({ type: 'SET_BET_STATUS', payload: status });
     },
     isWalletConnectModalOpen: store.isWalletConnectModalOpen,
     setWalletConnectModal: (open) => {
@@ -79,3 +104,9 @@ export const AppContextProvider = ({ children }) => {
 
   return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;
 };
+
+// imame nekoi promenlivi tuku vo kontekstot, ETH balance, C TOKEN BALANCE, EXCHANE RATE, WALLET CONNECTION STATE and TRANSACTION STATE
+
+// that allows us to just grab all the data that we need and share accross several different components
+
+// jumping back to usectoken.js
